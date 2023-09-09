@@ -11,7 +11,7 @@ export const App = () => {
   const [total, setTotal] = useState(0);
   useEffect(() => {
     setTotal(countPositiveFeedbackPercentage());
-  }, [goodEl, neutralEl, badEl]);
+  }, [goodEl, neutralEl, badEl, countPositiveFeedbackPercentage]);
   const onLeaveFeedback = targetKey => {
     switch (targetKey) {
       case 'good':
@@ -24,7 +24,7 @@ export const App = () => {
         setBad(p => ({ ...p, bad: p.bad + 1 }));
         break;
       default:
-        console.log('hello');
+        console.log('I like React');
         break;
     }
   };
