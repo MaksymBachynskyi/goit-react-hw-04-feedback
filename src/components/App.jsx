@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Statistics } from './statistics/statistics';
 import { Section } from './section/section';
 import { FeedbackOptions } from './feedback/feedback.jsx';
