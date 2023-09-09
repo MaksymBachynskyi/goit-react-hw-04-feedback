@@ -5,44 +5,45 @@ import { FeedbackOptions } from './feedback/feedback.jsx';
 import { Notification } from 'components/notification/notification';
 
 export const App = () => {
-  const [goodEl, setGood] = useState({ good: 0 });
-  const [neutralEl, setNeutral] = useState({ neutral: 0 });
-  const [badEl, setBad] = useState({ bad: 0 });
+  const [goodEl, setGood] = useState(0);
+  const [neutralEl, setNeutral] = useState(0);
+  const [badEl, setBad] = useState(0);
+
   const onLeaveFeedback = targetKey => {
     switch (targetKey) {
       case 'good':
-        setGood(p => ({ ...p, good: p.good + 1 }));
+        setGood(p => p + 1);
         break;
       case 'neutral':
-        setNeutral(p => ({ ...p, neutral: p.neutral + 1 }));
+        setNeutral(p => p + 1);
         break;
       case 'bad':
-        setBad(p => ({ ...p, bad: p.bad + 1 }));
+        setBad(p => p + 1);
         break;
       default:
         console.log('I like React');
         break;
     }
   };
-  const countTotalFeedback = () => goodEl.good + neutralEl.neutral + badEl.bad;
+  const countTotalFeedback = () => goodEl + neutralEl + badEl;
   const countPositiveFeedbackPercentage = () => {
     const countTotalFeed = countTotalFeedback();
 
-    return Math.round((goodEl.good / countTotalFeed) * 100);
+    return Math.round((goodEl / countTotalFeed) * 100);
   };
 
   return (
     <Section title={'Please leave feedback'}>
       <FeedbackOptions
-        options={{ ...goodEl, ...neutralEl, ...badEl }}
+        options={{ good: goodEl, neutral: neutralEl, bad: badEl }}
         onLeaveFeedback={onLeaveFeedback}
       />
       <h1>Statistics</h1>
       {countTotalFeedback() > 0 ? (
         <Statistics
-          good={goodEl.good}
-          neutral={neutralEl.neutral}
-          bad={badEl.bad}
+          good={goodEl}
+          neutral={neutralEl}
+          bad={badEl}
           total={countTotalFeedback()}
           positivePercentage={countPositiveFeedbackPercentage()}
         />

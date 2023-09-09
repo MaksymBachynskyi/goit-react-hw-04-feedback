@@ -8,7 +8,7 @@ export const Statistics = ({
   return (
     <div>
       <p>
-        Good:<span>{good}</span>
+        Good: <span>{good}</span>
       </p>
       <p>
         Neutral:<span>{neutral}</span>
