@@ -8,10 +8,6 @@ export const App = () => {
   const [goodEl, setGood] = useState({ good: 0 });
   const [neutralEl, setNeutral] = useState({ neutral: 0 });
   const [badEl, setBad] = useState({ bad: 0 });
-  const [total, setTotal] = useState(0);
-  useEffect(() => {
-    setTotal(countPositiveFeedbackPercentage());
-  }, [goodEl, neutralEl, badEl, countPositiveFeedbackPercentage]);
   const onLeaveFeedback = targetKey => {
     switch (targetKey) {
       case 'good':
@@ -28,7 +24,6 @@ export const App = () => {
         break;
     }
   };
-
   const countTotalFeedback = () => goodEl.good + neutralEl.neutral + badEl.bad;
   const countPositiveFeedbackPercentage = () => {
     const countTotalFeed = countTotalFeedback();
@@ -43,13 +38,13 @@ export const App = () => {
         onLeaveFeedback={onLeaveFeedback}
       />
       <h1>Statistics</h1>
-      {total > 0 ? (
+      {countTotalFeedback() > 0 ? (
         <Statistics
           good={goodEl.good}
           neutral={neutralEl.neutral}
           bad={badEl.bad}
           total={countTotalFeedback()}
-          positivePercentage={total}
+          positivePercentage={countPositiveFeedbackPercentage()}
         />
       ) : (
         <Notification title={'There is no feedback'} />
